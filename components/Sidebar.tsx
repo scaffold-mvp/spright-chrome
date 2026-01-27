@@ -193,13 +193,11 @@ export default function Sidebar() {
           </div>
 
           {/* Navigation Content */}
-          <div className="flex-1 overflow-y-auto py-6">
-            <div className="space-y-6">
+          <div className="flex-1 overflow-y-auto py-1">
+            <div className="space-y-2">
               {/* MY SPRIGHT APPS */}
               <div className="px-4">
-                <h3 className="text-[10px] font-semibold text-black/60 tracking-wider mb-3 leading-none">
-                  MY SPRIGHT APPS
-                </h3>
+            
                 <div className="space-y-1">
                   {myApps.map((item, idx) => (
                     <button

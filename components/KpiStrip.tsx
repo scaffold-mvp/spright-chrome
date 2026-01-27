@@ -68,8 +68,8 @@ export default function KpiStrip() {
                 />
                 <Bar 
                   dataKey="variance" 
-                  fill="#A49485" 
-                  radius={[4, 4, 0, 0]}
+                  fill="#2F2D36" 
+                  radius={[2, 2, 0, 0]}
                 />
               </BarChart>
             </ResponsiveContainer>

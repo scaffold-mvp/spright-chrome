@@ -17,11 +17,9 @@ export default function InsightCards() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-700">Total Undercharge Identified</span>
-              <span className="text-lg font-bold text-red-600">$203,000</span>
+              <span className="text-lg font-bold text-blue-600">$203,000</span>
             </div>
-            <div className="w-full bg-gray-100 rounded-full h-2">
-              <div className="bg-red-500 h-2 rounded-full" style={{ width: '100%' }}></div>
-            </div>
+            
           </div>
 
           {/* Breakdown by Category */}
@@ -99,7 +97,7 @@ export default function InsightCards() {
             
             <div className="space-y-3">
               {/* Issue 1 */}
-              <div className="p-3 bg-red-50 border border-red-100 rounded-lg">
+              <div className="p-3 border border-gray-100 rounded-lg">
                 <div className="flex items-start gap-2">
                   <div className="flex-shrink-0 mt-0.5">
                     <div className="w-2 h-2 bg-red-500 rounded-full"></div>
@@ -121,7 +119,7 @@ export default function InsightCards() {
               </div>
 
               {/* Issue 2 */}
-              <div className="p-3 bg-yellow-50 border border-yellow-100 rounded-lg">
+              <div className="p-3  border border-gray-100 rounded-lg">
                 <div className="flex items-start gap-2">
                   <div className="flex-shrink-0 mt-0.5">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
