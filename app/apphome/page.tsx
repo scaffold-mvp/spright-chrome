@@ -271,7 +271,7 @@ export default function AppHomePage() {
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-base font-semibold text-gray-900 mb-0.5">System Health</h3>
+                      <h3 className="text-base font-semibold text-gray-900 mb-0.5">409A Valuation</h3>
                       <p className="text-xs text-gray-500">Performance Monitoring</p>
                     </div>
                     <Activity size={16} className="text-green-600" />
