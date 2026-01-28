@@ -50,7 +50,7 @@ export default function KpiStrip() {
 
         {/* Bar Chart */}
         <div className="col-span-2">
-          <div className="h-16">
+          <div className="h-24">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
@@ -74,7 +74,7 @@ export default function KpiStrip() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="text-[10px] text-gray-500 mt-1">Spright Variance past 15 Days</div>
+          <div className="text-[10px] text-gray-500 mt-0.5">Spright Variance past 15 Days</div>
         </div>
       </div>
 

@@ -21,6 +21,7 @@ interface NavItem {
   active?: boolean;
   hasToggle?: boolean;
   path?: string;
+  status?: 'green' | 'yellow' | 'red';
 }
 
 interface NavSection {
@@ -55,33 +56,52 @@ export default function SidebarBillVariance() {
   // Panel should be open if either permanently open or hover open
   const isOpen = isPanelOpen || hoverOpen;
 
+  // Get status indicator color class
+  const getStatusColor = (status?: 'green' | 'yellow' | 'red') => {
+    switch (status) {
+      case 'green':
+        return 'bg-green-500';
+      case 'yellow':
+        return 'bg-yellow-500';
+      case 'red':
+        return 'bg-red-500';
+      default:
+        return '';
+    }
+  };
+
   const mainNavItems: NavItem[] = [
     { label: 'Managing', icon: <Sliders size={18} />, path: '/managing' },
     { label: 'Modeling', icon: <Database size={18} />, path: '/modeling' },
     { label: 'Reporting', icon: <BarChart3 size={18} />, path: '/reporting' },
+    
   ];
 
   const managingSection: NavSection = {
-    title: 'ADMIN OPTIONS',
+    title: 'ADMINISTRATION',
     items: [
-      { label: 'User Management' },
-      { label: 'Role Permissions' },
-      { label: 'System Settings' },
-      { label: 'Audit Logs' },
-      { label: 'API Keys' },
+      { label: 'Scheduled Automations' },
+      { label: 'Portals' },
+      { label: 'Documents' },
+      { label: 'Users' },
+      { label: 'Settings' },
+      { label: 'Notifications' },
+      { label: 'Billings' },
       { label: 'Integrations' },
+      { label: 'API Keys' },
     ],
   };
 
   const modelingSection: NavSection = {
-    title: 'DATA OPTIONS',
+    title: 'POLICIES',
     items: [
-      { label: 'Data Sources' },
-      { label: 'Schema Management' },
-      { label: 'Transform Rules' },
-      { label: 'Validation Logic' },
-      { label: 'Data Quality' },
-      { label: 'ETL Pipeline' },
+      { label: 'Bill Variance', status: 'green' },
+      { label: 'Contract Rate Validation', status: 'green' },
+      { label: 'Discount Limit Enforce', status: 'green' },
+      { label: 'Duplicate Invoice Detect', status: 'yellow' },
+      { label: 'Invoice Tolerance', status: 'green' },
+      { label: 'Revenue Recognition', status: 'green' },
+      { label: 'Usage Cap Alert', status: 'red' },
     ],
   };
 
@@ -96,7 +116,14 @@ export default function SidebarBillVariance() {
       { label: 'Scheduled Reports' },
     ],
   };
-
+  const versionSection: NavSection = {
+    title: 'VERSIONS',
+    items: [
+      { label: 'Version 1' },
+      { label: 'Version 2' },
+      { label: 'Version 3' },
+    ],
+  };
   // Determine which sections to show based on hover/active state
   const getSecondarySections = () => {
     if (pathname === '/managing') {
@@ -107,7 +134,7 @@ export default function SidebarBillVariance() {
       return [reportingSection];
     }
     // Default for bill-variance page
-    return [managingSection, modelingSection, reportingSection];
+    return [managingSection, modelingSection, reportingSection, versionSection];
   };
 
   return (
@@ -202,13 +229,26 @@ export default function SidebarBillVariance() {
       >
         <div className="flex flex-col h-full">
           {/* Header with Title */}
-          <div className="px-6 py-5">
-            <h2 className="text-base font-semibold text-black leading-none">Bill Variance Navigation</h2>
+          <div className="px-4 py-5">
+            <h2 className="text-base font-semibold text-black leading-none">
+              {pathname === '/managing' ? 'Administration' : 
+               pathname === '/modeling' ? 'Data Models' : 
+               pathname === '/reporting' ? 'Reports' : 
+               'Home'}
+            </h2>
+            
           </div>
 
           {/* Navigation Content */}
-          <div className="flex-1 overflow-y-auto py-6">
-            <div className="space-y-6">
+          <div className="flex-1 overflow-y-auto py-2">
+            <div 
+              key={pathname}
+              className={`space-y-6 ${
+                isPanelOpen 
+                  ? 'animate-slideInRight' 
+                  : ''
+              }`}
+            >
               {getSecondarySections().map((section, sectionIdx) => (
                 <div key={sectionIdx} className="px-4">
                   <h3 className="text-[10px] font-semibold text-black/60 tracking-wider mb-3 leading-none">
@@ -218,9 +258,12 @@ export default function SidebarBillVariance() {
                     {section.items.map((item, idx) => (
                       <button
                         key={idx}
-                        className="w-full text-left px-3 py-2 rounded-md text-sm text-black/70 hover:text-black hover:bg-[#E8E4DF]/50 transition-colors leading-none"
+                        className="w-full text-left px-3 py-2 rounded-md text-sm text-black/70 hover:text-black hover:bg-[#E8E4DF]/50 transition-colors leading-none flex items-center justify-between"
                       >
-                        {item.label}
+                        <span>{item.label}</span>
+                        {item.status && (
+                          <span className={`w-2 h-2 rounded-full ml-2.5 ${getStatusColor(item.status)}`}></span>
+                        )}
                       </button>
                     ))}
                   </div>

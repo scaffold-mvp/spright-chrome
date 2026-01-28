@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Search, Play, Plus, Download, MoreVertical, SlidersHorizontal, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   Table,
   TableBody,
@@ -10,6 +10,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface VarianceRecord {
   customerId: string;
@@ -157,6 +165,8 @@ export default function VarianceRecordsTableShadcn() {
   const [sortKey, setSortKey] = useState<SortKey | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -179,7 +189,7 @@ export default function VarianceRecordsTableShadcn() {
     return parseFloat(cleaned) || 0;
   };
 
-  const sortedRecords = useMemo(() => {
+  const sortedAndFilteredRecords = useMemo(() => {
     let filtered = mockRecords;
 
     // Filter by search query
@@ -214,137 +224,182 @@ export default function VarianceRecordsTableShadcn() {
     return filtered;
   }, [sortKey, sortDirection, searchQuery]);
 
+  const totalPages = Math.ceil(sortedAndFilteredRecords.length / pageSize);
+  const paginatedRecords = useMemo(() => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return sortedAndFilteredRecords.slice(startIndex, endIndex);
+  }, [sortedAndFilteredRecords, currentPage, pageSize]);
+
   const SortIcon = ({ columnKey }: { columnKey: SortKey }) => {
     if (sortKey !== columnKey) {
-      return <ArrowUpDown size={14} className="ml-2 text-gray-400" />;
+      return <ArrowUpDown className="ml-2 h-4 w-4" />;
     }
     if (sortDirection === 'asc') {
-      return <ArrowUp size={14} className="ml-2 text-gray-900" />;
+      return <ArrowUp className="ml-2 h-4 w-4" />;
     }
-    return <ArrowDown size={14} className="ml-2 text-gray-900" />;
+    return <ArrowDown className="ml-2 h-4 w-4" />;
   };
 
+  const handlePageSizeChange = (value: string) => {
+    setPageSize(Number(value));
+    setCurrentPage(1); // Reset to first page when changing page size
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const startRow = (currentPage - 1) * pageSize + 1;
+  const endRow = Math.min(currentPage * pageSize, sortedAndFilteredRecords.length);
+
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-      {/* Header Bar */}
-      <div className="bg-gray-100 px-6 py-4 border-b border-gray-200">
-        <div className="flex items-center justify-between">
-          <h3 className="text-gray-900 font-semibold text-lg">Variance Records</h3>
-          
-          <div className="flex items-center gap-4 flex-1 max-w-xl mx-8">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-              <input
-                type="text"
-                placeholder="Search Customers, Vendors, Accounts"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white text-gray-900 placeholder-gray-400 rounded-lg border border-gray-300 focus:outline-none focus:border-gray-400 text-sm"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-200 transition-colors">
-              <Play size={16} className="text-gray-700" />
-            </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-200 transition-colors">
-              <Plus size={16} className="text-gray-700" />
-            </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-200 transition-colors">
-              <Download size={16} className="text-gray-700" />
-            </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-200 transition-colors">
-              <MoreVertical size={16} className="text-gray-700" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Table */}
-      <div className="overflow-x-auto">
+    <div className="w-full">
+      <div className="rounded-md border border-gray-200 bg-white">
         <Table>
           <TableHeader>
-            <TableRow className="bg-gray-50 hover:bg-gray-50 border-b border-gray-200">
+            <TableRow className="bg-gray-50 hover:bg-gray-50">
               <TableHead 
-                className="text-gray-700 font-semibold cursor-pointer hover:text-gray-900 transition-colors"
+                className="cursor-pointer select-none"
                 onClick={() => handleSort('customerId')}
               >
                 <div className="flex items-center">
-                  CUSTOMER #
+                  Customer #
                   <SortIcon columnKey="customerId" />
                 </div>
               </TableHead>
               <TableHead 
-                className="text-gray-700 font-semibold cursor-pointer hover:text-gray-900 transition-colors"
+                className="cursor-pointer select-none"
                 onClick={() => handleSort('customerName')}
               >
                 <div className="flex items-center">
-                  CUSTOMER NAME
+                  Customer Name
                   <SortIcon columnKey="customerName" />
                 </div>
               </TableHead>
               <TableHead 
-                className="text-gray-700 font-semibold cursor-pointer hover:text-gray-900 transition-colors"
+                className="cursor-pointer select-none"
                 onClick={() => handleSort('erpTotal')}
               >
                 <div className="flex items-center">
-                  ERP TOTAL
+                  ERP Total
                   <SortIcon columnKey="erpTotal" />
                 </div>
               </TableHead>
               <TableHead 
-                className="text-gray-700 font-semibold cursor-pointer hover:text-gray-900 transition-colors"
+                className="cursor-pointer select-none"
                 onClick={() => handleSort('sprightTotal')}
               >
                 <div className="flex items-center">
-                  SPRIGHT TOTAL
+                  Spright Total
                   <SortIcon columnKey="sprightTotal" />
                 </div>
               </TableHead>
               <TableHead 
-                className="text-gray-700 font-semibold cursor-pointer hover:text-gray-900 transition-colors"
+                className="cursor-pointer select-none"
                 onClick={() => handleSort('variance')}
               >
                 <div className="flex items-center">
-                  VARIANCE
+                  Variance
                   <SortIcon columnKey="variance" />
                 </div>
               </TableHead>
               <TableHead 
-                className="text-gray-700 font-semibold cursor-pointer hover:text-gray-900 transition-colors"
+                className="cursor-pointer select-none"
                 onClick={() => handleSort('status')}
               >
                 <div className="flex items-center">
-                  STATUS
+                  Status
                   <SortIcon columnKey="status" />
                 </div>
               </TableHead>
               <TableHead 
-                className="text-gray-700 font-semibold cursor-pointer hover:text-gray-900 transition-colors"
+                className="cursor-pointer select-none"
                 onClick={() => handleSort('rootCause')}
               >
                 <div className="flex items-center">
-                  ROOT CAUSE
+                  Root Cause
                   <SortIcon columnKey="rootCause" />
                 </div>
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {sortedRecords.map((record, idx) => (
-              <TableRow key={idx} className="hover:bg-gray-50">
-                <TableCell className="font-medium text-gray-900">{record.customerId}</TableCell>
-                <TableCell className="text-gray-900">{record.customerName}</TableCell>
-                <TableCell className="text-gray-900">{record.erpTotal}</TableCell>
-                <TableCell className="text-gray-900">{record.sprightTotal}</TableCell>
-                <TableCell className="font-semibold text-gray-900">{record.variance}</TableCell>
-                <TableCell className="text-gray-700">{record.status}</TableCell>
-                <TableCell className="text-gray-700">{record.rootCause}</TableCell>
+            {paginatedRecords.length > 0 ? (
+              paginatedRecords.map((record, idx) => (
+                <TableRow key={idx}>
+                  <TableCell className="font-medium">{record.customerId}</TableCell>
+                  <TableCell>{record.customerName}</TableCell>
+                  <TableCell>{record.erpTotal}</TableCell>
+                  <TableCell>{record.sprightTotal}</TableCell>
+                  <TableCell>{record.variance}</TableCell>
+                  <TableCell>{record.status}</TableCell>
+                  <TableCell>{record.rootCause}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={7} className="h-24 text-center">
+                  No results.
+                </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
+      </div>
+      
+      {/* Pagination Controls */}
+      <div className="flex items-center justify-between px-2 py-4">
+        <div className="flex-1 text-sm text-muted-foreground">
+          Showing {startRow} to {endRow} of {sortedAndFilteredRecords.length} row(s)
+        </div>
+        <div className="flex items-center space-x-6 lg:space-x-8">
+          <div className="flex items-center space-x-2">
+            <p className="text-sm font-medium">Rows per page</p>
+            <Select
+              value={pageSize.toString()}
+              onValueChange={handlePageSizeChange}
+            >
+              <SelectTrigger className="h-8 w-[70px]">
+                <SelectValue placeholder={pageSize.toString()} />
+              </SelectTrigger>
+              <SelectContent side="top">
+                {[5, 10, 20, 50].map((size) => (
+                  <SelectItem key={size} value={size.toString()}>
+                    {size}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+            Page {currentPage} of {totalPages}
+          </div>
+          <div className="flex items-center space-x-2">
+            <Button
+              variant="outline"
+              className="h-8 w-8 p-0"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
+            >
+              <span className="sr-only">Go to previous page</span>
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="outline"
+              className="h-8 w-8 p-0"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              <span className="sr-only">Go to next page</span>
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
