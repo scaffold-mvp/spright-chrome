@@ -37,7 +37,7 @@ export default function InsightCards() {
                   <span className="text-sm font-semibold text-gray-900">$89,400 (44%)</span>
                 </div>
                 <div className="w-full bg-gray-100 rounded-full h-1.5">
-                  <div className="bg-orange-500 h-1.5 rounded-full" style={{ width: '44%' }}></div>
+                  <div className="bg-amber-700 h-1.5 rounded-full" style={{ width: '44%' }}></div>
                 </div>
               </div>
 
@@ -48,7 +48,7 @@ export default function InsightCards() {
                   <span className="text-sm font-semibold text-gray-900">$52,780 (26%)</span>
                 </div>
                 <div className="w-full bg-gray-100 rounded-full h-1.5">
-                  <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: '26%' }}></div>
+                  <div className="bg-lime-700 h-1.5 rounded-full" style={{ width: '26%' }}></div>
                 </div>
               </div>
 
@@ -59,7 +59,7 @@ export default function InsightCards() {
                   <span className="text-sm font-semibold text-gray-900">$36,540 (18%)</span>
                 </div>
                 <div className="w-full bg-gray-100 rounded-full h-1.5">
-                  <div className="bg-purple-500 h-1.5 rounded-full" style={{ width: '18%' }}></div>
+                  <div className="bg-stone-700 h-1.5 rounded-full" style={{ width: '18%' }}></div>
                 </div>
               </div>
 
@@ -70,7 +70,7 @@ export default function InsightCards() {
                   <span className="text-sm font-semibold text-gray-900">$24,280 (12%)</span>
                 </div>
                 <div className="w-full bg-gray-100 rounded-full h-1.5">
-                  <div className="bg-pink-500 h-1.5 rounded-full" style={{ width: '12%' }}></div>
+                  <div className="bg-teal-700 h-1.5 rounded-full" style={{ width: '12%' }}></div>
                 </div>
               </div>
             </div>
