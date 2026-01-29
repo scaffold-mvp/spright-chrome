@@ -264,7 +264,7 @@ export default function VarianceRecordsTableShadcn() {
           <TableHeader>
             <TableRow className="bg-gray-50 hover:bg-gray-50">
               <TableHead 
-                className="cursor-pointer select-none"
+                className="cursor-pointer select-none text-gray-900"
                 onClick={() => handleSort('customerId')}
               >
                 <div className="flex items-center">
@@ -273,7 +273,7 @@ export default function VarianceRecordsTableShadcn() {
                 </div>
               </TableHead>
               <TableHead 
-                className="cursor-pointer select-none"
+                className="cursor-pointer select-none text-gray-900"
                 onClick={() => handleSort('customerName')}
               >
                 <div className="flex items-center">
@@ -282,7 +282,7 @@ export default function VarianceRecordsTableShadcn() {
                 </div>
               </TableHead>
               <TableHead 
-                className="cursor-pointer select-none"
+                className="cursor-pointer select-none text-gray-900"
                 onClick={() => handleSort('erpTotal')}
               >
                 <div className="flex items-center">
@@ -291,7 +291,7 @@ export default function VarianceRecordsTableShadcn() {
                 </div>
               </TableHead>
               <TableHead 
-                className="cursor-pointer select-none"
+                className="cursor-pointer select-none text-gray-900"
                 onClick={() => handleSort('sprightTotal')}
               >
                 <div className="flex items-center">
@@ -300,7 +300,7 @@ export default function VarianceRecordsTableShadcn() {
                 </div>
               </TableHead>
               <TableHead 
-                className="cursor-pointer select-none"
+                className="cursor-pointer select-none text-gray-900"
                 onClick={() => handleSort('variance')}
               >
                 <div className="flex items-center">
@@ -309,7 +309,7 @@ export default function VarianceRecordsTableShadcn() {
                 </div>
               </TableHead>
               <TableHead 
-                className="cursor-pointer select-none"
+                className="cursor-pointer select-none text-gray-900"
                 onClick={() => handleSort('status')}
               >
                 <div className="flex items-center">
@@ -318,7 +318,7 @@ export default function VarianceRecordsTableShadcn() {
                 </div>
               </TableHead>
               <TableHead 
-                className="cursor-pointer select-none"
+                className="cursor-pointer select-none text-gray-900"
                 onClick={() => handleSort('rootCause')}
               >
                 <div className="flex items-center">
@@ -332,18 +332,18 @@ export default function VarianceRecordsTableShadcn() {
             {paginatedRecords.length > 0 ? (
               paginatedRecords.map((record, idx) => (
                 <TableRow key={idx}>
-                  <TableCell className="font-medium">{record.customerId}</TableCell>
-                  <TableCell>{record.customerName}</TableCell>
-                  <TableCell>{record.erpTotal}</TableCell>
-                  <TableCell>{record.sprightTotal}</TableCell>
-                  <TableCell>{record.variance}</TableCell>
-                  <TableCell>{record.status}</TableCell>
-                  <TableCell>{record.rootCause}</TableCell>
+                  <TableCell className="font-medium text-gray-900">{record.customerId}</TableCell>
+                  <TableCell className="text-gray-900">{record.customerName}</TableCell>
+                  <TableCell className="text-gray-900">{record.erpTotal}</TableCell>
+                  <TableCell className="text-gray-900">{record.sprightTotal}</TableCell>
+                  <TableCell className="text-gray-900">{record.variance}</TableCell>
+                  <TableCell className="text-gray-900">{record.status}</TableCell>
+                  <TableCell className="text-gray-900">{record.rootCause}</TableCell>
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={7} className="h-24 text-center">
+                <TableCell colSpan={7} className="h-24 text-center text-gray-900">
                   No results.
                 </TableCell>
               </TableRow>
@@ -353,18 +353,18 @@ export default function VarianceRecordsTableShadcn() {
       </div>
       
       {/* Pagination Controls */}
-      <div className="flex items-center justify-between px-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
+      <div className="flex items-center justify-between px-2 py-4 bg-gray-50 rounded-b-md">
+        <div className="flex-1 text-sm text-gray-700">
           Showing {startRow} to {endRow} of {sortedAndFilteredRecords.length} row(s)
         </div>
         <div className="flex items-center space-x-6 lg:space-x-8">
           <div className="flex items-center space-x-2">
-            <p className="text-sm font-medium">Rows per page</p>
+            <p className="text-sm font-medium text-gray-700">Rows per page</p>
             <Select
               value={pageSize.toString()}
               onValueChange={handlePageSizeChange}
             >
-              <SelectTrigger className="h-8 w-[70px]">
+              <SelectTrigger className="h-8 w-[70px] bg-white text-gray-900 border-gray-200">
                 <SelectValue placeholder={pageSize.toString()} />
               </SelectTrigger>
               <SelectContent side="top">
@@ -376,13 +376,13 @@ export default function VarianceRecordsTableShadcn() {
               </SelectContent>
             </Select>
           </div>
-          <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+          <div className="flex w-[100px] items-center justify-center text-sm font-medium text-gray-700">
             Page {currentPage} of {totalPages}
           </div>
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
-              className="h-8 w-8 p-0"
+              className="h-8 w-8 p-0 bg-white text-gray-900 hover:bg-gray-100 border-gray-200"
               onClick={handlePreviousPage}
               disabled={currentPage === 1}
             >
@@ -391,7 +391,7 @@ export default function VarianceRecordsTableShadcn() {
             </Button>
             <Button
               variant="outline"
-              className="h-8 w-8 p-0"
+              className="h-8 w-8 p-0 bg-white text-gray-900 hover:bg-gray-100 border-gray-200"
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
             >
