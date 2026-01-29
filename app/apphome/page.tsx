@@ -34,7 +34,7 @@ export default function AppHomePage() {
             <div className="mb-6">
               <div className="mb-6">
            
-              <h1 className="text-3xl font-semibold text-gray-900 mb-1">
+              <h1 className="text-2xl font-bold text-gray-900 mb-1">
                 Let me be your BFF
               </h1>
             
@@ -100,11 +100,11 @@ export default function AppHomePage() {
             <div className="flex items-center justify-center mb-4 mt-20">
               <div className="flex items-center gap-3 mb-6">
                 <img 
-                  src="https://i.pravatar.cc/150?img=47" 
+                  src="https://i.pravatar.cc/150?img=24" 
                   alt="Celine" 
                   className="w-10 h-10 rounded-full object-cover"
                 />
-                <h2 className="text-2xl font-semibold text-gray-900">My Spright Apps</h2>
+                <h2 className="text-1xl font-bold text-gray-900">Spright Apps is Welcoming You Back!</h2>
               </div>
             </div>
 
