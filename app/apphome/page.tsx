@@ -83,13 +83,13 @@ export default function AppHomePage() {
             </div>
 
             {/* AI Textarea Card with Animated Gradient Glow */}
-            <div className={`relative p-1 rounded-2xl transition-all duration-[800ms] ${
+            <div className={`relative p-1 rounded-2xl transition-all duration-[600ms] ${
               isTextareaFocused ? 'scale-[1.02]' : 'scale-100'
             }`}
             style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
               {/* Animated Gradient Background Glow */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                <div className={`absolute inset-0 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 blur-2xl animate-gradient-flow transition-opacity duration-[800ms] ${
+                <div className={`absolute inset-0 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 blur-2xl animate-gradient-flow transition-opacity duration-[600ms] ${
                   isTextareaFocused ? 'opacity-60' : 'opacity-40'
                 }`}></div>
               </div>
@@ -102,11 +102,13 @@ export default function AppHomePage() {
                   onFocus={() => setIsTextareaFocused(true)}
                   onBlur={() => setIsTextareaFocused(false)}
                   placeholder="Ariel AI answers questions, builds automations with you, connects to your data, and helps you build bespoke solutions."
-                  className={`w-full text-base text-gray-900 placeholder-gray-400 resize-none border-0 focus:outline-none focus:ring-0 mb-3 transition-all duration-[800ms] ${
-                    isTextareaFocused ? 'min-h-[46px]' : 'min-h-[28px]'
+                  className={`w-full text-base text-gray-900 placeholder-gray-400 resize-none border-0 focus:outline-none focus:ring-0 mb-3 px-3 py-2 transition-all duration-[600ms] ${
+                    isTextareaFocused ? 'h-[72px]' : 'h-[28px]'
                   }`}
-                  style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
-                  rows={isTextareaFocused ? 3 : 1}
+                  style={{ 
+                    transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    lineHeight: '1.5'
+                  }}
                 />
               
                 <div className="flex items-center justify-between pt-3 border-t border-gray-100">
