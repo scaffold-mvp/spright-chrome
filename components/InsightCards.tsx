@@ -1,6 +1,6 @@
 'use client';
 
-import { TrendingUp, AlertTriangle } from 'lucide-react';
+import { TrendingUp, AlertTriangle, Sparkles } from 'lucide-react';
 
 export default function InsightCards() {
   return (
@@ -8,7 +8,10 @@ export default function InsightCards() {
       {/* Revenue Impact Card */}
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-semibold text-gray-900">Revenue Impact</h3>
+          <div className="flex items-center gap-2">
+            <Sparkles className="text-black" size={16} />
+            <h3 className="text-base font-semibold text-gray-900">Revenue Impact</h3>
+          </div>
           <TrendingUp className="text-blue-600" size={20} />
         </div>
         
@@ -86,7 +89,10 @@ export default function InsightCards() {
       {/* Root Cause Analysis Card */}
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-semibold text-gray-900">Root Cause Analysis</h3>
+          <div className="flex items-center gap-2">
+            <Sparkles className="text-black" size={16} />
+            <h3 className="text-base font-semibold text-gray-900">Root Cause Analysis</h3>
+          </div>
           <AlertTriangle className="text-orange-600" size={20} />
         </div>
         
