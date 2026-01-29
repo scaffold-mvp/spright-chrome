@@ -6,11 +6,12 @@ import { useSidebar } from '@/contexts/SidebarContext';
 import Sidebar from '@/components/Sidebar';
 import TopBar from '@/components/TopBar';
 import ChatPanel from '@/components/ChatPanel';
-import { Sparkles, LayoutGrid, FileText, Copy, Play, Download, TrendingUp, Activity } from 'lucide-react';
+import { Sparkles, LayoutGrid, FileText, Copy, Play, Download, TrendingUp, Activity, Shuffle, ArrowRight, Table, Globe, ImageIcon, Mic, Send, ChevronDown } from 'lucide-react';
 
 export default function AppHomePage() {
   const { isPanelOpen, isChatOpen } = useSidebar();
   const router = useRouter();
+  const [appIdea, setAppIdea] = useState('');
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -28,90 +29,140 @@ export default function AppHomePage() {
             showPortalPublished={false}
           />
           
-          {/* Welcome Section */}
-          <div className="mb-8 mt-10">
-            <div className="flex items-center gap-3 mb-6">
-              <img 
-                src="https://i.pravatar.cc/150?img=47" 
-                alt="Celine" 
-                className="w-12 h-12 rounded-full object-cover"
-              />
-              <h2 className="text-2xl font-semibold text-gray-900">Celine is Back!</h2>
-            </div>
+          {/* AI App Builder Section */}
+          <div className="mb-12 mt-8">
+            <div className="mb-6">
+              <div className="mb-6">
+           
+              <h1 className="text-3xl font-semibold text-gray-900 mb-1">
+                Let me be your BFF
+              </h1>
             
-            {/* Action Cards Row - No Borders, Gray Dividers */}
-            <div className="grid grid-cols-4">
+            </div>
+
+            {/* AI Textarea Card with Animated Gradient Glow */}
+            <div className="relative p-1 rounded-2xl">
+              {/* Animated Gradient Background Glow */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 opacity-40 blur-2xl animate-gradient-flow"></div>
+              </div>
+              
+              {/* White Card Content */}
+              <div className="relative bg-white rounded-2xl border border-gray-200 shadow-lg p-4">
+                <textarea
+                  value={appIdea}
+                  onChange={(e) => setAppIdea(e.target.value)}
+                  placeholder="Ariel AI answers questions, builds automations with you, connects to your data, and helps you build bespoke solutions."
+                  className="w-full text-base text-gray-900 placeholder-gray-400 resize-none border-0 focus:outline-none focus:ring-0 mb-4 min-h-[40px]"
+                  rows={2}
+                />
+              
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <button className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
+                    <Table size={14} />
+                    Import files
+                  </button>
+                  
+                  <div className="flex items-center gap-3">
+                    {/* Model Selector */}
+                    
+                    
+                    {/* Action Icons */}
+                    <div className="flex items-center gap-1">
+                      <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors" title="Web search">
+                        <Globe size={18} />
+                      </button>
+                      <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors" title="Upload image">
+                        <ImageIcon size={18} />
+                      </button>
+                      <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors" title="Voice input">
+                        <Mic size={18} />
+                      </button>
+                      <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors" title="Send message">
+                        <Send size={18} />
+                      </button>
+                    </div>
+                    
+                    {/* Build It Button */}
+                    <button className="flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-white bg-black hover:bg-gray-800 rounded-lg transition-colors ml-2">
+                      Let's Go!
+                      <ArrowRight size={16} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+
+          {/* My Spright Apps Section */}
+          <div>
+            <div className="flex items-center justify-center mb-4 mt-20">
+              <div className="flex items-center gap-3 mb-6">
+                <img 
+                  src="https://i.pravatar.cc/150?img=47" 
+                  alt="Celine" 
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+                <h2 className="text-2xl font-semibold text-gray-900">My Spright Apps</h2>
+              </div>
+            </div>
+
+            {/* Welcome Section - Action Cards Row */}
+            <div className="grid grid-cols-4 mb-8">
               {/* Start Spright App with Ariel */}
-              <div className="group relative p-6 pb-16 cursor-pointer transition-all hover:bg-gray-50 border-r border-gray-200">
+              <div className="group relative p-6 pb-14 cursor-pointer transition-all hover:bg-gray-50 border-r border-gray-200">
                 <div className="flex items-start gap-3 mb-3">
                   <Sparkles className="text-orange-500 transition-transform group-hover:scale-110" size={20} />
                   <h3 className="font-semibold text-base text-gray-900">Start Spright App with Ariel</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-2.5">Let AI guide you through app creation</p>
                 
-                {/* Hover Button - 10px from text */}
+                {/* Hover Button - positioned below text */}
                 <button className="absolute bottom-6 left-6 px-4 py-2 bg-black text-white text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                  Let's Go!
+                  Select
                 </button>
               </div>
 
               {/* Start with App Templates */}
-              <div className="group relative p-6 pb-16 cursor-pointer transition-all hover:bg-gray-50 border-r border-gray-200">
+              <div className="group relative p-6 pb-14 cursor-pointer transition-all hover:bg-gray-50 border-r border-gray-200">
                 <div className="flex items-start gap-3 mb-3">
                   <LayoutGrid className="text-blue-500 transition-transform group-hover:scale-110" size={20} />
                   <h3 className="font-semibold text-base text-gray-900">Start with App Templates</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-2.5">Choose from pre-built templates</p>
                 
-                {/* Hover Button - 10px from text */}
+                {/* Hover Button - positioned below text */}
                 <button className="absolute bottom-6 left-6 px-4 py-2 bg-black text-white text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                  Let's Go!
+                Select
                 </button>
               </div>
 
               {/* I Got This. Start Blank Canvas */}
-              <div className="group relative p-6 pb-16 cursor-pointer transition-all hover:bg-gray-50 border-r border-gray-200">
+              <div className="group relative p-6 pb-14 cursor-pointer transition-all hover:bg-gray-50 border-r border-gray-200">
                 <div className="flex items-start gap-3 mb-3">
                   <FileText className="text-green-500 transition-transform group-hover:scale-110" size={20} />
                   <h3 className="font-semibold text-base text-gray-900">I Got This. Start Blank Canvas</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-2.5">Build from scratch</p>
                 
-                {/* Hover Button - 10px from text */}
+                {/* Hover Button - positioned below text */}
                 <button className="absolute bottom-6 left-6 px-4 py-2 bg-black text-white text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                  Let's Go!
+                Select
                 </button>
               </div>
 
               {/* Clone Existing App */}
-              <div className="group relative p-6 pb-16 cursor-pointer transition-all hover:bg-gray-50">
+              <div className="group relative p-6 pb-14 cursor-pointer transition-all hover:bg-gray-50">
                 <div className="flex items-start gap-3 mb-3">
                   <Copy className="text-purple-500 transition-transform group-hover:scale-110" size={20} />
                   <h3 className="font-semibold text-base text-gray-900">Clone Existing App</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-2.5">Duplicate and customize</p>
                 
-                {/* Hover Button - 10px from text */}
+                {/* Hover Button - positioned below text */}
                 <button className="absolute bottom-6 left-6 px-4 py-2 bg-black text-white text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                  Let's Go!
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* My Spright Apps Section */}
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-gray-900">My Spright Apps</h2>
-              <div className="flex items-center gap-2">
-                <button className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors">
-                  <Play size={16} className="text-gray-600" />
-                </button>
-                <button className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors">
-                  <Copy size={16} className="text-gray-600" />
-                </button>
-                <button className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors">
-                  <Download size={16} className="text-gray-600" />
+                Select
                 </button>
               </div>
             </div>

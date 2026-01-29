@@ -38,3 +38,46 @@ body {
 .animate-slideInRight {
   animation: slideInRight 0.6s ease-out forwards;
 }
+
+/* AI Textarea Gradient Animations */
+@keyframes gradientFlow {
+  0%, 100% {
+    transform: translateX(-2%) translateY(-2%) rotate(0deg) scale(1.05);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateX(2%) translateY(0%) rotate(45deg) scale(1.08);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(2%) translateY(2%) rotate(90deg) scale(1.05);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateX(-2%) translateY(0%) rotate(135deg) scale(1.08);
+    opacity: 0.35;
+  }
+}
+
+@keyframes gradientPulse {
+  0%, 100% {
+    transform: translateX(5%) translateY(5%) rotate(0deg) scale(1.1);
+    opacity: 0.4;
+  }
+  33% {
+    transform: translateX(-5%) translateY(-5%) rotate(-120deg) scale(1.2);
+    opacity: 0.5;
+  }
+  66% {
+    transform: translateX(0%) translateY(5%) rotate(-240deg) scale(1.15);
+    opacity: 0.45;
+  }
+}
+
+.animate-gradient-flow {
+  animation: gradientFlow 25s ease-in-out infinite;
+}
+
+.animate-gradient-pulse {
+  animation: gradientPulse 15s ease-in-out infinite;
+}
