@@ -73,11 +73,7 @@ export default function AppHomePage() {
               <div className="mb-6">
            
               <h1 className="text-2xl font-semi-bold text-gray-900 mb-1 flex items-center gap-2">
-                <div className="flex items-center -space-x-1">
-                  <Heart className="text-rose-300" size={14} fill="currentColor" />
-                  <Heart className="text-rose-500" size={24} fill="currentColor" />
-                  <Heart className="text-rose-400" size={16} fill="currentColor" />
-                </div>
+             
                 <span>
                   Let me be your <span className="inline-block text-left min-w-[240px]">{currentText}<span className="animate-pulse">|</span></span>
                 </span>
