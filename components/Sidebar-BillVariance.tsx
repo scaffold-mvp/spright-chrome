@@ -12,7 +12,7 @@ import {
   Grid,
   Sliders,
   Database,
-  BarChart3,
+  Workflow,
 } from 'lucide-react';
 
 interface NavItem {
@@ -73,7 +73,7 @@ export default function SidebarBillVariance() {
   const mainNavItems: NavItem[] = [
     { label: 'Managing', icon: <Sliders size={18} />, path: '/managing' },
     { label: 'Modeling', icon: <Database size={18} />, path: '/modeling' },
-    { label: 'Reporting', icon: <BarChart3 size={18} />, path: '/reporting' },
+    { label: 'Automation', icon: <Workflow size={18} />, path: '/automation' },
     
   ];
 
@@ -97,7 +97,6 @@ export default function SidebarBillVariance() {
     items: [
       { label: 'Bill Variance', status: 'green' },
       { label: 'Contract Rate Validation', status: 'green' },
-      { label: 'Discount Limit Enforce', status: 'green' },
       { label: 'Duplicate Invoice Detect', status: 'yellow' },
       { label: 'Invoice Tolerance', status: 'green' },
       { label: 'Revenue Recognition', status: 'green' },
@@ -105,15 +104,14 @@ export default function SidebarBillVariance() {
     ],
   };
 
-  const reportingSection: NavSection = {
-    title: 'REPORT TYPES',
+  const automationSection: NavSection = {
+    title: 'AUTOMATION TYPES',
     items: [
-      { label: 'Financial Reports' },
-      { label: 'Variance Analysis' },
-      { label: 'Compliance Reports' },
-      { label: 'Custom Dashboards' },
-      { label: 'Executive Summary' },
-      { label: 'Scheduled Reports' },
+      { label: 'Scheduled Workflows' },
+      { label: 'Data Sync' },
+      { label: 'Alert Triggers' },
+      { label: 'Approval Workflows' },
+
     ],
   };
   const versionSection: NavSection = {
@@ -121,7 +119,6 @@ export default function SidebarBillVariance() {
     items: [
       { label: 'Version 1' },
       { label: 'Version 2' },
-      { label: 'Version 3' },
     ],
   };
   // Determine which sections to show based on hover/active state
@@ -130,11 +127,11 @@ export default function SidebarBillVariance() {
       return [managingSection];
     } else if (pathname === '/modeling') {
       return [modelingSection];
-    } else if (pathname === '/reporting') {
-      return [reportingSection];
+    } else if (pathname === '/automation') {
+      return [automationSection];
     }
     // Default for bill-variance page
-    return [managingSection, modelingSection, reportingSection, versionSection];
+    return [managingSection, modelingSection, automationSection, versionSection];
   };
 
   return (
@@ -233,7 +230,7 @@ export default function SidebarBillVariance() {
             <h2 className="text-base font-semibold text-black leading-none">
               {pathname === '/managing' ? 'Administration' : 
                pathname === '/modeling' ? 'Data Models' : 
-               pathname === '/reporting' ? 'Reports' : 
+               pathname === '/automation' ? 'Automation' : 
                'Home'}
             </h2>
             

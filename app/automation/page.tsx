@@ -5,7 +5,7 @@ import SidebarBillVariance from '@/components/Sidebar-BillVariance';
 import TopBar from '@/components/TopBar';
 import ChatPanel from '@/components/ChatPanel';
 
-export default function ReportingPage() {
+export default function AutomationPage() {
   const { isPanelOpen, isChatOpen } = useSidebar();
 
   return (
@@ -21,14 +21,14 @@ export default function ReportingPage() {
         <div className="max-w-[1800px] mx-auto px-8 pb-8">
           <TopBar
             title="Automation"
-            subtitle="Reports and analytics dashboard"
+            subtitle="Workflow automation and scheduling"
             showPortalPublished={false}
           />
           
           <div className="flex items-center justify-center h-96">
             <div className="text-center">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">Automation</h2>
-              <p className="text-gray-500">Automation coming soon...</p>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-2">Automation Dashboard</h2>
+              <p className="text-gray-500">Workflow automation and scheduling coming soon...</p>
             </div>
           </div>
         </div>
