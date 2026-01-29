@@ -113,7 +113,7 @@ export default function AppHomePage() {
               {/* Start Spright App with Ariel */}
               <div className="group relative p-6 pb-14 cursor-pointer transition-all hover:bg-gray-50 border-r border-gray-200">
                 <div className="flex items-start gap-3 mb-3">
-                  <Sparkles className="text-orange-500 transition-transform group-hover:scale-110" size={20} />
+                  <Sparkles className="text-amber-700 transition-transform group-hover:scale-110" size={20} />
                   <h3 className="font-semibold text-base text-gray-900">Start Spright App with Ariel</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-2.5">Let AI guide you through app creation</p>
@@ -127,7 +127,7 @@ export default function AppHomePage() {
               {/* Start with App Templates */}
               <div className="group relative p-6 pb-14 cursor-pointer transition-all hover:bg-gray-50 border-r border-gray-200">
                 <div className="flex items-start gap-3 mb-3">
-                  <LayoutGrid className="text-blue-500 transition-transform group-hover:scale-110" size={20} />
+                  <LayoutGrid className="text-lime-700 transition-transform group-hover:scale-110" size={20} />
                   <h3 className="font-semibold text-base text-gray-900">Start with App Templates</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-2.5">Choose from pre-built templates</p>
@@ -141,7 +141,7 @@ export default function AppHomePage() {
               {/* I Got This. Start Blank Canvas */}
               <div className="group relative p-6 pb-14 cursor-pointer transition-all hover:bg-gray-50 border-r border-gray-200">
                 <div className="flex items-start gap-3 mb-3">
-                  <FileText className="text-green-500 transition-transform group-hover:scale-110" size={20} />
+                  <FileText className="text-stone-700 transition-transform group-hover:scale-110" size={20} />
                   <h3 className="font-semibold text-base text-gray-900">I Got This. Start Blank Canvas</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-2.5">Build from scratch</p>
@@ -155,7 +155,7 @@ export default function AppHomePage() {
               {/* Clone Existing App */}
               <div className="group relative p-6 pb-14 cursor-pointer transition-all hover:bg-gray-50">
                 <div className="flex items-start gap-3 mb-3">
-                  <Copy className="text-purple-500 transition-transform group-hover:scale-110" size={20} />
+                  <Copy className="text-teal-700 transition-transform group-hover:scale-110" size={20} />
                   <h3 className="font-semibold text-base text-gray-900">Clone Existing App</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-2.5">Duplicate and customize</p>
