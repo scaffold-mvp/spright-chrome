@@ -107,7 +107,7 @@ export default function AppHomePage() {
                 <img 
                   src="https://i.pravatar.cc/150?img=24" 
                   alt="Celine" 
-                  className="w-10 h-10 rounded-full object-cover"
+                  className="w-11 h-11 rounded-full object-cover border-2 border-white shadow-md"
                 />
                 <h2 className="text-1xl font-bold text-gray-900">Spright Apps is Welcoming You Back!</h2>
               </div>
