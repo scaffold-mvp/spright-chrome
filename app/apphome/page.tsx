@@ -6,7 +6,7 @@ import { useSidebar } from '@/contexts/SidebarContext';
 import Sidebar from '@/components/Sidebar';
 import TopBar from '@/components/TopBar';
 import ChatPanel from '@/components/ChatPanel';
-import { Sparkles, LayoutGrid, FileText, Copy, Play, Download, TrendingUp, Activity, Shuffle, ArrowRight, Table, Globe, ImageIcon, Mic, Send, ChevronDown } from 'lucide-react';
+import { Sparkles, LayoutGrid, FileText, Copy, Play, Download, TrendingUp, Activity, Shuffle, ArrowRight, Table, Globe, ImageIcon, Mic, Send, ChevronDown, Heart } from 'lucide-react';
 
 export default function AppHomePage() {
   const { isPanelOpen, isChatOpen } = useSidebar();
@@ -34,8 +34,13 @@ export default function AppHomePage() {
             <div className="mb-6">
               <div className="mb-6">
            
-              <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                Let me be your BFF
+              <h1 className="text-2xl font-bold text-gray-900 mb-1 flex items-center gap-2">
+                <div className="flex items-center -space-x-1">
+                  <Heart className="text-rose-300" size={14} fill="currentColor" />
+                  <Heart className="text-rose-500" size={24} fill="currentColor" />
+                  <Heart className="text-rose-400" size={16} fill="currentColor" />
+                </div>
+                Let me be your Spright BFF
               </h1>
             
             </div>
