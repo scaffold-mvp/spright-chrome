@@ -12,6 +12,7 @@ export default function AppHomePage() {
   const { isPanelOpen, isChatOpen } = useSidebar();
   const router = useRouter();
   const [appIdea, setAppIdea] = useState('');
+  const [isTextareaFocused, setIsTextareaFocused] = useState(false);
   
   // Typewriter animation state
   const words = ['Spright Copilot', 'Automation Assistant', 'Workflow Whisperer', 'Data BFF', 'Integration Guru'];
@@ -82,23 +83,33 @@ export default function AppHomePage() {
             </div>
 
             {/* AI Textarea Card with Animated Gradient Glow */}
-            <div className="relative p-1 rounded-2xl">
+            <div className={`relative p-1 rounded-2xl transition-all duration-[800ms] ${
+              isTextareaFocused ? 'scale-[1.02]' : 'scale-100'
+            }`}
+            style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
               {/* Animated Gradient Background Glow */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 opacity-40 blur-2xl animate-gradient-flow"></div>
+                <div className={`absolute inset-0 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 blur-2xl animate-gradient-flow transition-opacity duration-[800ms] ${
+                  isTextareaFocused ? 'opacity-60' : 'opacity-40'
+                }`}></div>
               </div>
               
               {/* White Card Content */}
-              <div className="relative bg-white rounded-2xl border border-gray-200 shadow-lg p-4">
+              <div className="relative bg-white rounded-2xl border border-gray-200 shadow-lg p-3">
                 <textarea
                   value={appIdea}
                   onChange={(e) => setAppIdea(e.target.value)}
+                  onFocus={() => setIsTextareaFocused(true)}
+                  onBlur={() => setIsTextareaFocused(false)}
                   placeholder="Ariel AI answers questions, builds automations with you, connects to your data, and helps you build bespoke solutions."
-                  className="w-full text-base text-gray-900 placeholder-gray-400 resize-none border-0 focus:outline-none focus:ring-0 mb-4 min-h-[40px]"
-                  rows={2}
+                  className={`w-full text-base text-gray-900 placeholder-gray-400 resize-none border-0 focus:outline-none focus:ring-0 mb-3 transition-all duration-[800ms] ${
+                    isTextareaFocused ? 'min-h-[46px]' : 'min-h-[28px]'
+                  }`}
+                  style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
+                  rows={isTextareaFocused ? 3 : 1}
                 />
               
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                   <button className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
                     <Table size={14} />
                     Import files
@@ -137,7 +148,11 @@ export default function AppHomePage() {
           </div>
 
           {/* My Spright Apps Section */}
-          <div>
+          <div className={`transition-all duration-700 ease-in-out ${
+            isTextareaFocused 
+              ? 'opacity-30 pointer-events-none blur-sm' 
+              : 'opacity-100 pointer-events-auto blur-0'
+          }`}>
             <div className="flex items-center justify-center mb-4 mt-20">
               <div className="flex items-center gap-3 mb-6">
                 <img 
