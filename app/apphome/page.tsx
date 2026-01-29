@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSidebar } from '@/contexts/SidebarContext';
 import Sidebar from '@/components/Sidebar';
@@ -12,6 +12,44 @@ export default function AppHomePage() {
   const { isPanelOpen, isChatOpen } = useSidebar();
   const router = useRouter();
   const [appIdea, setAppIdea] = useState('');
+  
+  // Typewriter animation state
+  const words = ['Spright Copilot', 'Automation Assistant', 'Workflow Whisperer', 'Data BFF', 'Integration Guru'];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  
+  useEffect(() => {
+    const currentWord = words[currentWordIndex];
+    const typingSpeed = isDeleting ? 30 : 60;
+    const pauseAfterComplete = 2000;
+    const pauseAfterDelete = 500;
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (currentText.length < currentWord.length) {
+          setCurrentText(currentWord.substring(0, currentText.length + 1));
+        } else {
+          // Word complete, start deleting after pause
+          setTimeout(() => setIsDeleting(true), pauseAfterComplete);
+        }
+      } else {
+        // Deleting
+        if (currentText.length > 0) {
+          setCurrentText(currentText.substring(0, currentText.length - 1));
+        } else {
+          // Deletion complete, move to next word after pause
+          setIsDeleting(false);
+          setTimeout(() => {
+            setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+          }, pauseAfterDelete);
+        }
+      }
+    }, typingSpeed);
+    
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentWordIndex, words]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -34,13 +72,15 @@ export default function AppHomePage() {
             <div className="mb-6">
               <div className="mb-6">
            
-              <h1 className="text-2xl font-bold text-gray-900 mb-1 flex items-center gap-2">
+              <h1 className="text-2xl font-semi-bold text-gray-900 mb-1 flex items-center gap-2">
                 <div className="flex items-center -space-x-1">
                   <Heart className="text-rose-300" size={14} fill="currentColor" />
                   <Heart className="text-rose-500" size={24} fill="currentColor" />
                   <Heart className="text-rose-400" size={16} fill="currentColor" />
                 </div>
-                Let me be your Spright BFF
+                <span>
+                  Let me be your <span className="inline-block text-left min-w-[240px]">{currentText}<span className="animate-pulse">|</span></span>
+                </span>
               </h1>
             
             </div>
